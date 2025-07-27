@@ -6,38 +6,51 @@
   <title>Jantar Teológico Vintage</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
   <div class="brilhos"></div>
   <div class="container">
-    <h1>Jantar Teológico</h1>
+    <h1 class="fade-in">Jantar Teológico</h1>
 
-    <h2>Informações do Jantar</h2>
+    <h2 class="fade-in">Informações do Jantar</h2>
 
-    <label for="local">Onde será:</label>
-    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 15px;">
+    <label for="local" class="fade-in">Onde será:</label>
+    <div class="fade-in" style="display: flex; gap: 10px; align-items: center; margin-bottom: 15px;">
       <input type="text" id="local" placeholder="Ex: Salão Paroquial" />
       <button type="button" onclick="usarLocalizacao()" title="Usar minha localização">📍</button>
     </div>
 
-    <label for="data">Data:</label>
-    <input type="date" id="data" />
+    <label for="data" class="fade-in">Data:</label>
+    <input type="date" id="data" class="fade-in" />
 
-    <label for="horario">Horário:</label>
-    <input type="time" id="horario" />
+    <label for="horario" class="fade-in">Horário:</label>
+    <input type="time" id="horario" class="fade-in" />
 
-    <label for="comida">Tipo de comida:</label>
-    <input type="text" id="comida" placeholder="Ex: Jantar Italiano" />
+    <label for="comida" class="fade-in">Tipo de comida:</label>
+    <input type="text" id="comida" placeholder="Ex: Jantar Italiano" class="fade-in" />
 
-    <label for="assunto">Assunto tratado:</label>
-    <textarea id="assunto" placeholder="Ex: A Esperança Cristã"></textarea>
+    <label for="assunto" class="fade-in">Assunto tratado:</label>
+    <textarea id="assunto" placeholder="Ex: A Esperança Cristã" class="fade-in"></textarea>
 
-    <div class="botoes">
+    <div class="botoes fade-in">
       <button id="salvarInfoBtn">Salvar Informações</button>
     </div>
 
-    <h2>Tabela dos participantes</h2>
-    <div class="table-container">
+    <h2 class="fade-in">Tabela dos participantes</h2>
+    <div class="table-container fade-in">
       <table id="convidadosTable">
         <thead>
           <tr><th>Listas de presença</th></tr>
@@ -48,12 +61,12 @@
         </tbody>
       </table>
     </div>
-    <div class="botoes">
+    <div class="botoes fade-in">
       <button id="addConvidadoBtn">Adicionar Convidado</button>
       <button id="salvarConvidadosBtn">Salvar Lista</button>
       <button id="resetarConvidadosBtn">Resetar Lista</button>
     </div>
-    <p id="mensagem" class="mensagem"></p>
+    <p id="mensagem" class="mensagem fade-in"></p>
   </div>
 
   <script src="script.js"></script>
@@ -82,6 +95,19 @@
         alert("Não foi possível acessar sua localização.");
       });
     }
+  </script>
+
+  <!-- Animação ao rolar -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
