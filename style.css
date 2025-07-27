@@ -170,3 +170,59 @@ textarea:focus {
     opacity: 0;
   }
 }
+
+/* Responsividade para telas menores (mobile) */
+@media (max-width: 600px) {
+
+  .container {
+    margin: 20px 15px;
+    padding: 20px 15px;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 2.2em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  label {
+    font-size: 1em;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  textarea {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  /* Botões em coluna com espaçamento */
+  .botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .botoes button {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 12px 0;
+    margin: 0;
+  }
+
+  /* Deixa a tabela com scroll horizontal se for muito larga */
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table {
+    font-size: 0.9em;
+  }
+
+}
