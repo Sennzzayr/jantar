@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jantar Teológico Vintage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="brilhos"></div>
+  <div class="container">
+    <h1>Jantar Teológico</h1>
+
+    <h2>Informações do Jantar</h2>
+
+    <label for="local">Onde será:</label>
+    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 15px;">
+      <input type="text" id="local" placeholder="Ex: Salão Paroquial" />
+      <button type="button" onclick="usarLocalizacao()" title="Usar minha localização">📍</button>
+    </div>
+
+    <label for="data">Data:</label>
+    <input type="date" id="data" />
+
+    <label for="horario">Horário:</label>
+    <input type="time" id="horario" />
+
+    <label for="comida">Tipo de comida:</label>
+    <input type="text" id="comida" placeholder="Ex: Jantar Italiano" />
+
+    <label for="assunto">Assunto tratado:</label>
+    <textarea id="assunto" placeholder="Ex: A Esperança Cristã"></textarea>
+
+    <div class="botoes">
+      <button id="salvarInfoBtn">Salvar Informações</button>
+    </div>
+
+    <h2>Tabela dos participantes</h2>
+    <div class="table-container">
+      <table id="convidadosTable">
+        <thead>
+          <tr><th>Listas de presença</th></tr>
+        </thead>
+        <tbody contenteditable="true">
+          <tr><td>Exemplo: Ana</td></tr>
+          <tr><td>Exemplo: João</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="botoes">
+      <button id="addConvidadoBtn">Adicionar Convidado</button>
+      <button id="salvarConvidadosBtn">Salvar Lista</button>
+      <button id="resetarConvidadosBtn">Resetar Lista</button>
+    </div>
+    <p id="mensagem" class="mensagem"></p>
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- GPS Script -->
+  <script>
+    function usarLocalizacao() {
+      if (!navigator.geolocation) {
+        alert("Geolocalização não suportada pelo navegador.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(async (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
+        try {
+          const resposta = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
+          const dados = await resposta.json();
+          const endereco = dados.display_name || `${lat}, ${lon}`;
+          document.getElementById('local').value = endereco;
+        } catch (err) {
+          document.getElementById('local').value = `${lat}, ${lon}`;
+        }
+      }, () => {
+        alert("Não foi possível acessar sua localização.");
+      });
+    }
+  </script>
+</body>
+</html>

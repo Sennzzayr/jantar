@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Cormorant Garamond', serif;
+  background: linear-gradient(135deg, #4b3b28 0%, #8c7154 100%);
+  color: #d4af37;
+  overflow-x: hidden;
+  height: 100vh;
+  position: relative;
+}
+
+.container {
+  max-width: 900px;
+  margin: 50px auto;
+  background: rgba(51, 36, 19, 0.9);
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.2em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px #d4af37;
+}
+
+.subtitulo {
+  text-align: center;
+  font-size: 1.1em;
+  margin-bottom: 30px;
+  color: #e3c56b;
+  font-style: italic;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  border: 2px solid #d4af37;
+}
+
+thead tr {
+  background: #5a4428;
+  color: #f5deb3;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+tbody td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #d4af37;
+  cursor: text;
+  user-select: text;
+  font-size: 1em;
+  color: #f5deb3;
+}
+
+.botoes {
+  margin-top: 20px;
+  text-align: center;
+}
+
+button {
+  background-color: #d4af37;
+  color: #342d1f;
+  font-weight: bold;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: 1.1em;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ffdf00;
+}
+
+.mensagem {
+  margin-top: 15px;
+  text-align: center;
+  color: #a0ffa0;
+  font-style: italic;
+  min-height: 1.2em;
+}
+
+/* Estilo para labels */
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #e8d39e;
+  font-size: 1.1em;
+}
+
+/* Estilo para inputs e textarea */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  background: rgba(80, 60, 40, 0.3);
+  color: #f5deb3;
+  font-size: 1em;
+  font-family: 'Cormorant Garamond', serif;
+  box-shadow: inset 0 0 5px rgba(212, 175, 55, 0.3);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 10px #d4af37;
+}
+
+/* Brilhos caindo */
+.brilhos {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.brilho {
+  position: absolute;
+  width: 5px;
+  height: 15px;
+  background: linear-gradient(180deg, #d4af37, transparent);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation-name: brilhoCair;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes brilhoCair {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
